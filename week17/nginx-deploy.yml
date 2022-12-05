@@ -1,31 +1,26 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: joseph-wk17-service
-  labels:
-    app: nginx
-spec:
-  type: LoadBalancer
-  ports:
-  - port: 80
-  selector:
-    app: nginx
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: joseph-wk17-deploy
+  name: week17project
   labels:
-    app: nginx
+    app: week17project
 spec:
-  replicas: 2    # creates this many replicas
   selector:
     matchLabels:
-      app: nginx
+      app: week17project
+  revisionHistoryLimit: 10
+  replicas: 1
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
-        app: nginx
+        app: week17project
     spec:
       containers:
-      - name: joseph-week17
+        - name: nginx
+          imagePullPolicy: Always
+          image: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
