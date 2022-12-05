@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: week17project
+  name: joseph-week17
   labels:
     app: week17project
 spec:
