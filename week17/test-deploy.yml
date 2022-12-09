@@ -4,6 +4,7 @@ metadata:
   name: myapp-test
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: myapp-test
@@ -16,21 +17,11 @@ spec:
         - name: nginx-webserver
           image: nginx
           imagePullPolicy: Always
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 500m
           ports:
             - containerPort: 8081
         - name: debian-test
           image: debian
           imagePullPolicy: Always
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 500m
           ports:
             - containerPort: 8082
-          command: ["/bin/sh"]
-          args: ["-c", "while true; do echo hello; sleep 10;done"]
       restartPolicy: Always
