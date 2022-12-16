@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-week18
+  name: nginx-week18
+  namespace: default
+  resourceVersion: '276786'
+  uid: fdae3b08-dcf6-4885-a373-2ba92b1ef8cf
+spec:
+  replicas: 5
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx-week18
+  template:
+    metadata:
+      labels:
+        app: nginx-week18
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-index
+              mountPath: /usr/share/nginx/html/
+      volumes:
+        - name: nginx-index
+          configMap:
+            name: html-configmap

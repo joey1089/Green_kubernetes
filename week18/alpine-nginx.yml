@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: alpinengx-week18
+  name: alpinengx-week18
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: alpinengx-week18
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: alpinengx-week18
+    spec:
+      containers:
+      - image: nginx:stable-alpine
+        name: nginx
+        ports:
+        - containerPort: 80
